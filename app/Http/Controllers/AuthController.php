@@ -9,10 +9,11 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
-    public function login(Request $request){
+    public function login(Request $request)
+    {
 
-         $request->validate([
-            'email'    => 'required|email',
+        $request->validate([
+            'email' => 'required|email',
             'password' => 'required|min:6',
         ]);
 
@@ -27,30 +28,60 @@ class AuthController extends Controller
         //     ], 401);
         // }
 
-       
+
         // $token = $user->createToken('auth_token')->plainTextToken;
 
-       session()->flash('success', 'you are loged in ');
- 
+        session()->flash('success', 'you are loged in ');
 
-           return redirect('dashboard');
+
+        return redirect('dashboard');
     }
 
-    public function users_Data(Request $request){
+    public function users_Data(Request $request)
+    {
 
-           return view('users');
+        return view('users');
 
     }
 
-    public function dashboard(Request $request){
+    public function dashboard(Request $request)
+    {
         return view('dashboard');
     }
 
-    public function get_users(Request $request){
-      return response()->json([
+    public function get_users(Request $request)
+    {
+        return response()->json([
             'status' => true,
-            'users'  => User::select('id', 'name', 'email')->get()
+            'users' => User::select('id', 'name', 'email')->get()
         ]);
+
+    }
+
+    public function destroy($id)
+    {
+        $user = User::find($id);
+
+        if ($user) {
+            $user->delete();
+            return response()->json(['status' => true, 'message' => 'User deleted successfully']);
+        } else {
+            return response()->json(['status' => false, 'message' => 'User not found']);
+        }
+    }
+
+    public function update_user(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        if(!$user){
+            return response()->json(['status'=> false,'message'=> 'data not found']);
+        }
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->save();
+        return response()->json(['status' => true, 'users' => User::select('id', 'name', 'email')->where('id',$id)->first()]);
 
     }
 

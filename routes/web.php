@@ -8,14 +8,15 @@ Route::get('/', function () {
 });
 
 
-Route::post('login',[AuthController::class,'login'])->name('login');
+Route::post('login',[AuthController::class,'login'])->name(name: 'login');
 
 Route::post('logout',[AuthController::class,'logout'])->name('logout');  
 Route::get('users_data',[AuthController::class,'users_data'])->name('users_data');  
 Route::get('get_users',[AuthController::class,'get_users'])->name('get_users');
 Route::get('past_users',[AuthController::class,'past_users'])->name('past_users');   
 
-
+Route::Delete('delete_user/{id}',[Authcontroller::class,"destroy"]);
+Route::Post('update_user/{id}',[Authcontroller::class,"update_user"]);  
 
 Route::get('dashboard',[AuthController::class,'dashboard'])->name('dashboard');  
 

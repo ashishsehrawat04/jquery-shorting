@@ -6,6 +6,12 @@
     <title>Dashboard - {{ config('app.name') }}</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
     <style>
         body {
             min-height: 100vh;
@@ -37,7 +43,9 @@
 </head>
 <body>
     <!-- Sidebar -->
-    <div class="sidebar">
+
+
+        <div class="sidebar">
         <h4>{{ config('app.name') }}</h4>
         <a href="#">🏠 Dashboard</a>
         <a href="{{ route('users_data')}}">👤 Profile</a>
@@ -65,8 +73,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-        <!-- <h2>Welcome, {{ Auth::user()->name ?? 'User' }} 👋</h2> -->
-        <p class="text-muted">This is your dashboard page.</p>
+        <!-- <h2>Welcome, {{ Auth::user()->name ?? 'User' }} 👋</h2> -->    
+        <!-- <p class="text-muted">This is your dashboard page.</p> -->
 
             @yield('content')
     </div>
