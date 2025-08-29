@@ -31,11 +31,26 @@
             @endif
             <div class="card shadow-lg rounded-4">
                 <div class="card-body p-4">
-                    <h4 class="text-center mb-4">Login</h4>
+                    <h4 class="text-center mb-4">Sign up</h4>
 
              
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('signupSubmit') }}">
                         @csrf
+
+                         <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input 
+                                type="text" 
+                                class="form-control @error('name') is-invalid @enderror" 
+                                id="name" 
+                                name="name" 
+                                value="{{ old('name') }}" 
+                                required 
+                                autofocus>
+                            @error('name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
 
                         <!-- Email -->
                         <div class="mb-3">
@@ -53,7 +68,6 @@
                             @enderror
                         </div>
 
-                      
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
                             <input 
@@ -74,12 +88,12 @@
                         </div> -->
 
                         <!-- Submit -->
-                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                        <button type="submit" class="btn btn-primary w-100">Sign up</button>
                     </form>
 
                     <div class="text-center mt-3">
-                        <a href="{{-- route('password.request') --}}">Forgot Password?</a>
-                         <a href="{{ route('sign_up') }}">sign up</a>
+                        <!-- <a href="{{-- route('password.request') --}}">Forgot Password?</a> -->
+                      
                     </div>
                 </div>
             </div>

@@ -18,6 +18,11 @@
             display: flex;
         }
         .sidebar {
+            position: sticky;
+            /* Full height */
+            overflow-y: auto;    /* Make only sidebar scrollable if content is long */
+        }
+        .sidebar {
             width: 250px;
             background: #212529;
             color: white;
@@ -49,7 +54,7 @@
         <h4>{{ config('app.name') }}</h4>
         <a href="#">🏠 Dashboard</a>
         <a href="{{ route('users_data')}}">👤 Profile</a>
-        <a href="#">📊 Reports</a>
+        <a href="{{ route('chat_list') }}">📊 chat</a>
         <a href="#">⚙️ Settings</a>
         <hr>
         <form method="POST" action="{{ route('logout') }}">
@@ -73,11 +78,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-        <!-- <h2>Welcome, {{ Auth::user()->name ?? 'User' }} 👋</h2> -->    
+        <h2>Welcome, {{ Auth::user()->name ?? 'User' }} 👋</h2>    
         <!-- <p class="text-muted">This is your dashboard page.</p> -->
 
             @yield('content')
-    </div>
+    </div>            
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
