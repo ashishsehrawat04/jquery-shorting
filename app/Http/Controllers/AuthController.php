@@ -123,7 +123,7 @@ public function login(Request $request)
                 $q->where('sender_id', $userId)->where('receiver_id', $authId);
             })
             ->orderBy('created_at', 'asc')
-            ->select('message')
+         
             ->limit(20)
             ->get();
 
